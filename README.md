@@ -23,11 +23,13 @@ Logs are found in
 It may be better to use firefix as Chrome usually does not allow non-CA certs. 
 
 Login Panel: https://hirokos-mbp:9443/SampleIdentityStore/login.jsp
+!(https://github.com/una-tapa/identitystoresampleapp/blob/master/screenshorts/loginpanel.png)
 
 Context root: https://hirokos-mbp:9443/SampleIdentityStore/
 ```
 Error 404: SRVE0190E: File not found: /
 ```
+!(https://github.com/una-tapa/identitystoresampleapp/blob/master/screenshorts/contextroot.png)
 Servlet page: https://hirokos-mbp:9443/SampleIdentityStore/servlet
 This page is only shown after successful authentication/authorization. 
 
@@ -36,6 +38,8 @@ web username: someone
 web user has role "somegroup": true
 web user has role "someothegroup": false
 ```
+!(https://github.com/una-tapa/identitystoresampleapp/blob/master/screenshorts/servlet.png)
+
 ---
 ## JSR375 spec
 
