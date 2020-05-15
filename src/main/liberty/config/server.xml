@@ -1,0 +1,28 @@
+<server description="Sample Servlet server">
+    <featureManager>
+        <feature>jsp-2.3</feature>
+        <feature>appSecurity-3.0</feature>
+        <feature>localConnector-1.0</feature>
+    </featureManager>
+
+    <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}" id="defaultHttpEndpoint"  host="*" />
+
+    <!-- webApplication id="IdentityStoreSample" location="IdentityStoreSample.war" contextRoot="${app.context.root}" /-->
+    <!-- Automatically expand WAR files and EAR files -->
+    <applicationManager autoExpand="true"/>
+        <!-- webContainer enablePostOnlyJSecurityCheck="true"/-->
+    <applicationMonitor updateTrigger="mbean"/>
+    <httpSession cookieSecure="true" invalidationTimeout="13h" securityIntegrationEnabled="false"/>
+    <webAppSecurity includePathInWASReqURL="false" ssoRequiresSSL="true"/>
+    <ltpa expiration="13h"/>
+        <authCache timeout="13h"/>
+    <webApplication id="SampleIdentityStore" location="SampleIdentityStore.war" name="SampleIdentityStore"/>
+
+<basicRegistry id="myRegistry">
+    	<user name="someone" password="password"/>
+    	<group name="somegroup">
+    		<member name="someone"/>
+    	</group>
+    	<user name="user2" password="password"/> 
+</basicRegistry>
+</server>

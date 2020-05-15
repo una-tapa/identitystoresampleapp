@@ -1,0 +1,50 @@
+To clean the directories
+./gradlew cleanDirs
+
+To recompile the application.
+./gradlew libertyPackage
+
+To start/stop liberty
+./gradlew libertyStart
+./gradlew libertyStop
+
+Logs are here
+build/wlp/usr/servers/defaultServer/logs/messages.log
+
+Port conflict
+------------------
+lsof -i tcp:9443
+COMMAND   PID                USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+java    71569 htakamiy@us.ibm.com  140u  IPv6 0x686728a99ce8d815      0t0  TCP *:tungsten-https (LISTEN)
+
+kill -9 71569
+---------------
+
+Try with Firefox (Chrome may  not allow to proceed most of the time)
+
+----Port 9080 does not take me all the way.. -----------
+http://hirokos-mbp:9080/SampleIdentityStore/
+Error 404: SRVE0190E: File not found: /
+
+Although followig shows login panel
+http://hirokos-mbp:9080/SampleIdentityStore/login.jsp
+I guess ltpaToken won't come thru tcpip (only ssl)
+so it was not going to the login panel.
+
+--- Better use .. 9443 works -----------
+https://hirokos-mbp:9443/SampleIdentityStore/
+Error 404: SRVE0190E: File not found: / 
+
+login URL shows good login panel 
+https://hirokos-mbp:9443/SampleIdentityStore/login.jsp
+
+After successful authentication, it goes back to above context root.
+
+However if I put this URL
+https://hirokos-mbp:9443/SampleIdentityStore/servlet
+
+- The panel shows user information --
+web username: someone
+web user has role "somegroup": true
+web user has role "someothegroup": false
+-------------------------------------------
